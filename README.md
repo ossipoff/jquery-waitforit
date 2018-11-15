@@ -23,4 +23,4 @@ $(window).wait({
 ```
 
 ## Demo
-http://jsfiddle.net/ossipoff/w4q27gt2/
+http://jsfiddle.net/ossipoff/w4q27gt2/show
