@@ -17,17 +17,9 @@
     
     if (this.cssClass) {
       $waitCursorDiv.addClass(this.cssClass);
-    }
-    
-    if (!$waitCursorDiv.css('cursor')) {
+    } else {
       styles.cursor = 'wait';
-    }
-    
-    if (!$waitCursorDiv.css('backgroundColor')) {
       styles.backgroundColor = 'white';
-    }
-    
-    if (!$waitCursorDiv.css('opacity')) {
       styles.opacity = 0;
     }
     
