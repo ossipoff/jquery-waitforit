@@ -126,19 +126,19 @@
           f(stopProxy);
         });
         
-        if ($window.didustay) {
-          try {
+        try {
+          if ($window.didustay) {
             $window.didustay(stopProxy);
-            $window.on('beforeunload', function(e) {
-              callbackTimeoutHandles.push(setTimeout(startProxy, opts.delay));
-              $.each(delayProxies, function(i, p) {
-                callbackTimeoutHandles.push(setTimeout(p.proxy, p.delay));
-              });
-              callbackTimeoutHandles.push(setTimeout(stopProxy, opts.timeout));
-            });
-          } catch (e) {
-            console.error(e);
           }
+          $window.on('beforeunload', function(e) {
+            callbackTimeoutHandles.push(setTimeout(startProxy, opts.delay));
+            $.each(delayProxies, function(i, p) {
+              callbackTimeoutHandles.push(setTimeout(p.proxy, p.delay));
+            });
+            callbackTimeoutHandles.push(setTimeout(stopProxy, opts.timeout));
+          });
+        } catch (e) {
+          console.error(e);
         }
       } else {
         throw new Error('waitforit only works for window object!');
