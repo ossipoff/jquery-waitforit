@@ -55,7 +55,7 @@
   };
   
   $.fn.wait = function(opts) {
-    if (opts.callbacks) {
+    if (opts && opts.callbacks) {
       opts.callbacks = $.extend({}, defaultOpts.callbacks, opts.callbacks);
     }
     
