@@ -107,10 +107,10 @@
         
         $.each(opts.ajaxStartFunctions, function(i, f) {
           f(function() {
-            callbackTimeoutHandles.push(setTimeout(startProxy, opts.delay));
-          });
-          f(function() {
-            callbackTimeoutHandles.push(setTimeout(stopProxy, opts.timeout));
+            var delay = typeof (opts.delay) === 'function' ? opts.delay() : opts.delay;
+            var timeout = typeof (opts.timeout) === 'function' ? opts.timeout() : opts.timeout;
+            callbackTimeoutHandles.push(setTimeout(startProxy, delay));
+            callbackTimeoutHandles.push(setTimeout(stopProxy, timeout));
           });
         });
         
@@ -123,11 +123,13 @@
             $window.didustay(stopProxy);
           }
           $window.on('beforeunload', function(e) {
-            callbackTimeoutHandles.push(setTimeout(startProxy, opts.delay));
-            $.each(delayProxies, function(i, p) {
+            var delay = typeof (opts.delay) === 'function' ? opts.delay() : opts.delay;
+            var timeout = typeof (opts.timeout) === 'function' ? opts.timeout() : opts.timeout;
+            callbackTimeoutHandles.push(setTimeout(startProxy, delay));
+            $.each(delayProxies, function (i, p) {
               callbackTimeoutHandles.push(setTimeout(p.proxy, p.delay));
             });
-            callbackTimeoutHandles.push(setTimeout(stopProxy, opts.timeout));
+            callbackTimeoutHandles.push(setTimeout(stopProxy, timeout));
           });
         } catch (e) {
           console.error(e);
