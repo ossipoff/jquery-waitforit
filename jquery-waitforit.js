@@ -120,7 +120,9 @@
         
         try {
           if ($window.didustay) {
-            $window.didustay(stopProxy);
+            $window.didustay({
+              stayed: stopProxy
+            });
           }
           $window.on('beforeunload', function(e) {
             var delay = typeof (opts.delay) === 'function' ? opts.delay() : opts.delay;
